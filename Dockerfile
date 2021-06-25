@@ -1,5 +1,5 @@
 FROM microsoft/iis:latest
 
-COPY Add c:\\inetpub\Add
+COPY JavaAdd c:\\inetpub\JavaAdd
 
-CMD ["powershell.exe", "c:\\inetpub\Add"]
+CMD ["powershell.exe", "c:\\inetpub\JavaAdd"]
