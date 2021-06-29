@@ -1,26 +1,10 @@
-//FROM microsoft/iis:latest
+FROM microsoft/iis:latest
 
-FROM microsoft/azure-functions/node
-//docker pull mcr.microsoft.com/azure-functions/node
+ENV NPM_CONFIG_LOGLEVEL info
+ENV IOJS_VERSION 3.2.0
 
-# install simple http server for serving static content
-RUN npm install -g http-server
+RUN powershell -Command "wget -Uri https://iojs.org/dist/v%IOJS_VERSION%/iojs-v%IOJS_VERSION%-x64.msi -OutFile iojs.msi -UseBasicParsing"
 
-# make the 'app' folder the current working directory
-WORKDIR /app
+RUN msiexec.exe /q /i iojs.msi
 
-# copy both 'package.json' and 'package-lock.json' (if available)
-COPY package*.json ./
-
-# install project dependencies
-RUN npm ci
-
-# copy project files and folders to the current working directory (i.e. 'app' folder)
-COPY . .
-
-# build app for production with minification
-RUN npm run build
-
-EXPOSE 8080
-CMD [ "http-server", "dist" ]
-
+CMD [ "iojs" ]
