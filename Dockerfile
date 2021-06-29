@@ -1,6 +1,7 @@
 //FROM microsoft/iis:latest
 
-FROM node:lts-alpine
+FROM mcr.microsoft.com/azure-functions/node
+//docker pull mcr.microsoft.com/azure-functions/node
 
 # install simple http server for serving static content
 RUN npm install -g http-server
