@@ -1,6 +1,6 @@
 //FROM microsoft/iis:latest
 
-FROM mcr.microsoft.com/azure-functions/node
+FROM microsoft/azure-functions/node
 //docker pull mcr.microsoft.com/azure-functions/node
 
 # install simple http server for serving static content
